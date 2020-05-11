@@ -23,6 +23,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
+      - name: Remove existing TypeScript
+      run: |
+        npm uninstall typescript --no-save
+        npm uninstall tslint --no-save
+    - name: npm install and test
+      run: |
+        npm install
+        npm update
+        npm test
