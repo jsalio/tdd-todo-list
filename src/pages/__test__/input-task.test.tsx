@@ -19,7 +19,7 @@ describe('Test on Input', () => {
             defaultValue: 'sample'
         }
         const input = shallow(<InputTask defaultValue={props.defaultValue} />).find('input');
-        expect(input.isEmpty()).toBe(false);
+        expect(input.props().value).toBe('sample');
     });
     it('load with empty default value', () => {
         let props = {
@@ -35,4 +35,12 @@ describe('Test on Input', () => {
         const input = shallow(<InputTask defaultValue={props.defaultValue} />).find('input');
         expect(input.props().value).toBe('123456');
     });
+    it('Simulate user input', () => {
+        let props = {
+            defaultValue: '123456',
+            onChangeInput: () => jest.fn()
+        }
+        const input = shallow(<InputTask defaultValue={props.defaultValue} handlerChange={props.onChangeInput} />).find('input');
+        expect(input.props().value).toBe('123456');
+    })
 })

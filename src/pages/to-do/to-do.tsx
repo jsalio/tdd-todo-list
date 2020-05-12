@@ -3,7 +3,12 @@ import { InputTask } from '../components/input-task';
 import { AddTask } from '../components/add-task';
 import { TaskList } from '../components/task-list';
 
-export default class Todo extends React.PureComponent<any, any> {
+type AppState = {
+    tasks: string[];
+    defaultValue: string
+}
+
+export default class Todo extends React.PureComponent<any, AppState> {
 
     /**
      *
@@ -11,14 +16,14 @@ export default class Todo extends React.PureComponent<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            tasks: ['sample'],
+            tasks: [],
             defaultValue: ''
         }
     }
 
     render() {
         return <div>
-            <InputTask defaultValue={this.state.defaultValue} />
+            <InputTask defaultValue={this.state.defaultValue} handlerChange={(e) => this.setState({ defaultValue: e })} />
             <AddTask addTask={() => {
                 let currentStateList = this.state.tasks;
                 currentStateList.push(this.state.defaultValue);
