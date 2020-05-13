@@ -5,5 +5,5 @@ export interface IAddTaskProps {
 }
 
 export const AddTask: React.FC<IAddTaskProps> = (prop) => {
-    return (<button onClick={() => prop.addTask()}></button>)
+    return (<button onClick={() => prop.addTask()}>Add task</button>)
 }

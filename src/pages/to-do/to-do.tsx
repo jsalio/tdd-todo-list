@@ -27,7 +27,9 @@ export default class Todo extends React.PureComponent<any, AppState> {
             <AddTask addTask={() => {
                 let currentStateList = this.state.tasks;
                 currentStateList.push(this.state.defaultValue);
-                this.setState({ tasks: currentStateList })
+                this.setState({
+                    tasks: currentStateList, defaultValue: ''
+                })
             }} />
             <TaskList tasks={this.state.tasks} />
         </div>
